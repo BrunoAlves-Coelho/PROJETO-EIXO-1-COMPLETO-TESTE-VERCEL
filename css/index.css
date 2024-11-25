@@ -81,6 +81,8 @@ body {
     padding: 20px;
     border: 1px solid #888;
     width: 30%;
+    /* width: auto; */
+
     position: absolute;
     top: 10%;
     right: 0; /* Fixa o modal à direita */
@@ -164,6 +166,7 @@ body {
       margin-bottom:20% ;
       
     }
+    
   }
   
   /* Exibir 2 cards por linha em tablets */
@@ -224,4 +227,20 @@ body {
       
   }
   }
-          
+        
+  
+  @media screen and (max-width:1000px){
+    .modal-content-custom {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #888;
+      width: auto;
+      position: absolute;
+      top: 10%;
+      right: 0; /* Fixa o modal à direita */
+      margin-right: 20px; /* Espaçamento da borda direita */
+      height: 500px;
+  }
+
+
+}
