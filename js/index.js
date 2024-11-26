@@ -150,21 +150,3 @@ function createUser() {
       xhr1.send(jsonData1);
   });
 }
-
-const jsonServer = require('json-server');
-const path = require('path');
-const server = jsonServer.create();
-const router = jsonServer.router(path.join(__dirname, 'db.json'));
-const middlewares = jsonServer.defaults();
-
-// Porta definida pela Vercel
-const PORT = process.env.PORT || 3000;
-
-// Configuração do JSON Server
-server.use(middlewares);
-server.use(router);
-
-server.listen(PORT, () => {
-  console.log(`JSON Server is running on port ${PORT}`);
-});
-
