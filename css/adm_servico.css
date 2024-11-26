@@ -10,7 +10,7 @@ body {
 }
 
 .modal-dialog{
-    font-size: 1.3rem;
+    font-size: 1.0rem;
 }
 
 .navbar-toggler {
@@ -139,6 +139,7 @@ button{
     background-color: #C79655;
     color:#7a4d2c;
     border: none;
+    margin: 15px;
 }
 .modal-dialog{
     border-radius: 5px;

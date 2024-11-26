@@ -53,6 +53,15 @@
       "telefone": "(31)97144-8208",
       "dataNascimento": "1990-12-24",
       "tipousuario": "cliente"
+    },
+    {
+      "id": "5e36",
+      "nome": "Barbeiro 04",
+      "email": "barbeiro03@barbeiro.com.br",
+      "senha": "12345",
+      "telefone": "(31)33311-8111",
+      "dataNascimento": "2000-12-24",
+      "tipousuario": "barbeiro"
     }
   ],
   "barbeiros": [
@@ -114,6 +123,26 @@
         ],
         "horarioInicial": "08:00",
         "horarioFinal": "12:00"
+      }
+    },
+    {
+      "id": "5e36",
+      "servico": [
+        "Corte Infantil",
+        "Barba Desenhada",
+        "Hidratação Barba"
+      ],
+      "statusBarbeiro": true,
+      "parametrosAgenda": {
+        "diasDisponiveis": [
+          "Segunda",
+          "Terca",
+          "Quarta",
+          "Quinta",
+          "Sexta"
+        ],
+        "horarioInicial": "08:00",
+        "horarioFinal": "20:00"
       }
     }
   ],
