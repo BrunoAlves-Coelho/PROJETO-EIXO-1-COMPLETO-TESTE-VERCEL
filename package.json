@@ -1,8 +1,16 @@
 {
+  "name": "barber-app",
+  "version": "1.0.0",
+  "description": "Aplicação de gerenciamento de barbearia",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "json-server": "^1.0.0-beta.3"
   },
-  "scripts": {
-    "start": "json-server --watch db/db.json"
-  }
+  "engines": {
+    "node": "18.x"
+  },
+  "license": "MIT"
 }
