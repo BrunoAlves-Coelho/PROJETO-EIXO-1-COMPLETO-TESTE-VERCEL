@@ -90,14 +90,14 @@ function preencherTabela(agendamentos, usuarios, servicos) {
         // if(cliente.id === usuarioLogado.id){
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${agendamento.data}</td>
-            <td>${cliente ? cliente.nome : ''}</td>
-            <td>${barbeiro ? barbeiro.nome : ''}</td>
-            <td>${servico ? servico.nome : ''}</td>
-            <td>${servico ? servico.valor : ''}</td>
+            <td class="data">${agendamento.data}</td>
+            <td class="cliente">${cliente ? cliente.nome : ''}</td>
+            <td class="barbeiro">${barbeiro ? barbeiro.nome : ''}</td>
+            <td class="servico">${servico ? servico.nome : ''}</td>
+            <td class="servicoValor">${servico ? servico.valor : ''}</td>
 
-            <td>${agendamento.horariodeinicio}</td>
-            <td>${agendamento.status}</td>
+            <td class="horario">${agendamento.horariodeinicio}</td>
+            <td class="status">${agendamento.status}</td>
         `;
         tabelaBody.appendChild(row);
         // }
