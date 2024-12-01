@@ -48,7 +48,7 @@ form{
    
 }
 
-input{
+input, select{
     margin: 10px;
     border-radius: 25px;
     padding: 5px;

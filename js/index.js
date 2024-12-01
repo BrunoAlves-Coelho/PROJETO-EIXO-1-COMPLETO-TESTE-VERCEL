@@ -40,6 +40,7 @@ function fazerLogin(){
          // Salvar o ID e tipo de usuário no localStorage
          localStorage.setItem('usuarioLogado', JSON.stringify({
           id: usuario.id,
+          nome: usuario.nome,
           tipousuario: usuario.tipousuario
         }));
         // Redirecionamento com base no tipo de usuário

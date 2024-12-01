@@ -8,7 +8,26 @@ const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 if (!usuarioLogado || usuarioLogado.tipousuario !== 'administrador') {
     alert('Você não está logado ou não tem permissão para acessar esta página.');
     window.location.href = 'index.html'; // Redireciona para a página de login
+}else {
+    const nomeUsuario = usuarioLogado.nome;
+    const saudacaoChaveAdm = `saudacaoExibidaAdm${usuarioLogado.id}`; // Cria uma chave única por usuário
+    const saudacaoExibidaAdm = localStorage.getItem(saudacaoChaveAdm);
+
+    if (!saudacaoExibidaAdm) {
+        // Exibe a saudação no primeiro acesso
+        alert(`Olá, ${nomeUsuario}!`);
+        localStorage.setItem(saudacaoChaveAdm, 'true'); // Marca como exibida para este usuário
+    }
 }
+
+
+
+
+// else {
+//     // Verifica se o nome está disponível e exibe a saudação
+//     const nomeUsuario = usuarioLogado.nome;
+//     alert(`Olá, ${nomeUsuario}!`);
+// }
 
 
 document.addEventListener('DOMContentLoaded', function () {

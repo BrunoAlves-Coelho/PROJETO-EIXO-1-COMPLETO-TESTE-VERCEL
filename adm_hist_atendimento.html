@@ -9,6 +9,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/adm_hist_atendimento.css">
     <script src="js/adm_hist_atendimento.js" defer></script>
+    <link rel="icon" href="img/Logo Zé Barbeiro 2.png" type="image/x-icon">
 </head>
 
 <body>
@@ -194,15 +195,19 @@
             <h1>HISTÓRICO DE ATENDIMENTOS</h1>
             <div class="formulario-consulta">
                 <form name="agenda_atendimentos" method="POST">
-                    Selecionar Barbeiro: <br> <input type="options" list="barbeiros-cad" name="barbeiros-cad" id="barbeiros-cadastrados"><br>
-                    <datalist id="barbeiros-cad">
+                    <!-- Selecionar Barbeiro: <br> <input type="options" list="barbeiros-cad" name="barbeiros-cad" id="barbeiros-cadastrados"><br> -->
+                    <!-- <datalist id="barbeiros-cad"> -->
                         <!-- <option value="Barbeiro 01">
                         <option value="Barbeiro 02">
                         <option value="Barbeiro 03">
                         <option value="Barbeiro 04">
                         <option value="Barbeiro 05"> -->
-                    </datalist>
+                    <!-- </datalist> -->
                     <!-- <input type="submit"> -->
+                    <label for="barbeiros-cadastrados">Selecionar Barbeiro:</label><br>
+                    <select id="barbeiros-cadastrados" name="barbeiros-cad">
+                        <option value="" disabled selected>Selecione um barbeiro</option>
+                    </select><br>
 
                     Período:
 

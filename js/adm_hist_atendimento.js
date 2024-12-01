@@ -16,6 +16,41 @@ document.addEventListener("DOMContentLoaded", function() {
     getListaBarbeiros();
 });
 
+// // Função para obter a lista de barbeiros
+// function getListaBarbeiros() {
+//     const xhrBarbeiros = new XMLHttpRequest();
+//     xhrBarbeiros.open("GET", urlBarbeiros, true);
+//     xhrBarbeiros.onreadystatechange = function () {
+//         if (xhrBarbeiros.readyState === 4 && xhrBarbeiros.status === 200) {
+//             const barbeiros = JSON.parse(xhrBarbeiros.responseText);
+
+//             const xhrUsuarios = new XMLHttpRequest();
+//             xhrUsuarios.open("GET", urlUsuarios, true);
+//             xhrUsuarios.onreadystatechange = function () {
+//                 if (xhrUsuarios.readyState === 4 && xhrUsuarios.status === 200) {
+//                     const usuarios = JSON.parse(xhrUsuarios.responseText);
+//                     const datalistBarbeiro = document.getElementById('barbeiros-cad');
+//                     datalistBarbeiro.innerHTML = ''; // Limpa o datalist
+
+//                     // Preenche o datalist com nomes de barbeiros, armazenando o ID em `data-id`
+//                     barbeiros.forEach(function(barbeiro) {
+//                         const usuario = usuarios.find(user => user.id === barbeiro.id);
+//                         if (usuario) {
+//                             const option = document.createElement('option');
+//                             option.value = usuario.nome; // Exibe o nome
+//                             option.setAttribute("data-id", barbeiro.id); // Armazena o ID
+//                             datalistBarbeiro.appendChild(option);
+//                         }
+//                     });
+//                 }
+//             };
+//             xhrUsuarios.send();
+//         }
+//     };
+//     xhrBarbeiros.send();
+// }
+
+
 // Função para obter a lista de barbeiros
 function getListaBarbeiros() {
     const xhrBarbeiros = new XMLHttpRequest();
@@ -29,17 +64,17 @@ function getListaBarbeiros() {
             xhrUsuarios.onreadystatechange = function () {
                 if (xhrUsuarios.readyState === 4 && xhrUsuarios.status === 200) {
                     const usuarios = JSON.parse(xhrUsuarios.responseText);
-                    const datalistBarbeiro = document.getElementById('barbeiros-cad');
-                    datalistBarbeiro.innerHTML = ''; // Limpa o datalist
+                    const selectBarbeiro = document.getElementById('barbeiros-cadastrados');
+                    selectBarbeiro.innerHTML = '<option value="" disabled selected>Selecione um barbeiro</option>'; // Limpa e adiciona a opção padrão
 
-                    // Preenche o datalist com nomes de barbeiros, armazenando o ID em `data-id`
+                    // Preenche o select com nomes de barbeiros, armazenando o ID como value
                     barbeiros.forEach(function(barbeiro) {
                         const usuario = usuarios.find(user => user.id === barbeiro.id);
                         if (usuario) {
                             const option = document.createElement('option');
-                            option.value = usuario.nome; // Exibe o nome
-                            option.setAttribute("data-id", barbeiro.id); // Armazena o ID
-                            datalistBarbeiro.appendChild(option);
+                            option.value = barbeiro.id; // Armazena o ID no value
+                            option.textContent = usuario.nome; // Exibe o nome
+                            selectBarbeiro.appendChild(option);
                         }
                     });
                 }
@@ -49,6 +84,8 @@ function getListaBarbeiros() {
     };
     xhrBarbeiros.send();
 }
+
+
 
 // Captura o ID do barbeiro ao selecionar um nome
 document.getElementById('barbeiros-cadastrados').addEventListener('input', function() {
@@ -61,10 +98,33 @@ document.getElementById('barbeiros-cadastrados').addEventListener('input', funct
     }
 });
 
+// // Evento de clique no botão "Buscar"
+// document.getElementById('buscar-agendamentos').addEventListener('click', function () {
+//     const inputBarbeiro = document.getElementById('barbeiros-cadastrados');
+//     const barbeiroId = inputBarbeiro.getAttribute('data-id'); // Captura o ID armazenado no campo
+
+//     if (!barbeiroId) {
+//         alert('Por favor, selecione um barbeiro válido.');
+//         return;
+//     }
+
+//     const dataInicio = document.getElementById('data-inicio').value;
+//     const dataFim = document.getElementById('data-fim').value;
+//     const statusFiltro = document.querySelector('input[name="statusFiltro"]:checked')?.value;
+
+//     if (!dataInicio || !dataFim) {
+//         alert('Por favor, selecione o período.');
+//         return;
+//     }
+
+//     buscarAgendamentos(barbeiroId, dataInicio, dataFim, statusFiltro);
+// });
+
+
 // Evento de clique no botão "Buscar"
 document.getElementById('buscar-agendamentos').addEventListener('click', function () {
-    const inputBarbeiro = document.getElementById('barbeiros-cadastrados');
-    const barbeiroId = inputBarbeiro.getAttribute('data-id'); // Captura o ID armazenado no campo
+    const selectBarbeiro = document.getElementById('barbeiros-cadastrados');
+    const barbeiroId = selectBarbeiro.value; // O value agora contém o ID do barbeiro
 
     if (!barbeiroId) {
         alert('Por favor, selecione um barbeiro válido.');
@@ -82,6 +142,8 @@ document.getElementById('buscar-agendamentos').addEventListener('click', functio
 
     buscarAgendamentos(barbeiroId, dataInicio, dataFim, statusFiltro);
 });
+
+
 
 // Função para buscar agendamentos no servidor
 function buscarAgendamentos(barbeiroId, dataInicio, dataFim, statusFiltro) {

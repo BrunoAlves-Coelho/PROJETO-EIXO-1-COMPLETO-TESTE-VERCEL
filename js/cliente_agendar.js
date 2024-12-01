@@ -9,15 +9,53 @@ const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 if (!usuarioLogado || usuarioLogado.tipousuario !== 'cliente') {
     alert('Você não está logado ou não tem permissão para acessar esta página.');
     window.location.href = 'index.html'; // Redireciona para a página de login
+} else {
+    const nomeUsuario = usuarioLogado.nome;
+    const saudacaoChave = `saudacaoExibida_${usuarioLogado.id}`; // Cria uma chave única por usuário
+    const saudacaoExibida = localStorage.getItem(saudacaoChave);
+
+    if (!saudacaoExibida) {
+        // Exibe a saudação no primeiro acesso
+        alert(`Olá, ${nomeUsuario}!`);
+        localStorage.setItem(saudacaoChave, 'true'); // Marca como exibida para este usuário
+    }
 }
+
+
+// else {
+//     // Verifica se o nome está disponível e exibe a saudação
+//     const nomeUsuario = usuarioLogado.nome || "Cliente";
+//     alert(`Olá, ${nomeUsuario}!`);
+// }
+// console.log(JSON.parse(localStorage.getItem('usuarioLogado')));
 
 // ID do cliente logado
 const clienteId = usuarioLogado.id;
 
 // Ao carregar a página
 document.addEventListener('DOMContentLoaded', function () {
-    getListaBarbeirosCliente();
+      getListaBarbeirosCliente();
+    
+
+
+     // Adiciona validação para impedir datas anteriores à atual
+     document.querySelector('input[type="date"]').addEventListener('change', function () {
+        const dataSelecionada = new Date(this.value + "T00:00:00"); // Ajusta para o início do dia
+        const dataAtual = new Date();
+        
+        // Zera as horas, minutos, segundos e milissegundos da data atual
+        dataAtual.setHours(0, 0, 0, 0);
+
+        if (dataSelecionada < dataAtual) {
+            alert("Você não pode selecionar uma data anterior à data atual.");
+            this.value = ''; // Limpa o campo de data selecionada
+        }
+    });
+
 });
+
+
+
 
 // Função para formatar a data no formato DD/MM/AAAA
 function formatarData(data) {
@@ -26,6 +64,39 @@ function formatarData(data) {
 }
 
 // // Função para obter a lista de barbeiros
+
+// function getListaBarbeirosCliente() {
+//     const xhrBarbeiros = new XMLHttpRequest();
+//     xhrBarbeiros.open("GET", urlBarbeiros, true);
+//     xhrBarbeiros.onreadystatechange = function () {
+//         if (xhrBarbeiros.readyState === 4 && xhrBarbeiros.status === 200) {
+//             const barbeiros = JSON.parse(xhrBarbeiros.responseText);
+
+//             const xhrUsuarios = new XMLHttpRequest();
+//             xhrUsuarios.open("GET", urlUsuarios, true);
+//             xhrUsuarios.onreadystatechange = function () {
+//                 if (xhrUsuarios.readyState === 4 && xhrUsuarios.status === 200) {
+//                     const usuarios = JSON.parse(xhrUsuarios.responseText);
+//                     const datalistBarbeiro = document.getElementById('cliente-barbeiros-cad');
+//                     datalistBarbeiro.innerHTML = ''; // Limpa o datalist
+//                     barbeiros
+//                         .filter(barbeiro => barbeiro.statusBarbeiro) // Filtra barbeiros com status true
+//                         .forEach(barbeiro => {
+//                             const usuario = usuarios.find(user => user.id === barbeiro.id);
+//                             if (usuario) {
+//                                 const option = document.createElement('option');
+//                                 option.value = usuario.nome;
+//                                 option.setAttribute("data-id", barbeiro.id);
+//                                 datalistBarbeiro.appendChild(option);
+//                             }
+//                         });
+//                 }
+//             };
+//             xhrUsuarios.send();
+//         }
+//     };
+//     xhrBarbeiros.send();
+// }
 
 function getListaBarbeirosCliente() {
     const xhrBarbeiros = new XMLHttpRequest();
@@ -39,17 +110,18 @@ function getListaBarbeirosCliente() {
             xhrUsuarios.onreadystatechange = function () {
                 if (xhrUsuarios.readyState === 4 && xhrUsuarios.status === 200) {
                     const usuarios = JSON.parse(xhrUsuarios.responseText);
-                    const datalistBarbeiro = document.getElementById('cliente-barbeiros-cad');
-                    datalistBarbeiro.innerHTML = ''; // Limpa o datalist
+                    const selectBarbeiro = document.getElementById('barbeiros-cadastrados');
+                    selectBarbeiro.innerHTML = '<option value="">Selecione um barbeiro</option>'; // Limpa o select e adiciona a opção padrão
+
                     barbeiros
                         .filter(barbeiro => barbeiro.statusBarbeiro) // Filtra barbeiros com status true
                         .forEach(barbeiro => {
                             const usuario = usuarios.find(user => user.id === barbeiro.id);
                             if (usuario) {
                                 const option = document.createElement('option');
-                                option.value = usuario.nome;
-                                option.setAttribute("data-id", barbeiro.id);
-                                datalistBarbeiro.appendChild(option);
+                                option.value = barbeiro.id; // Use o ID como valor da opção
+                                option.textContent = usuario.nome; // Exibe o nome do barbeiro
+                                selectBarbeiro.appendChild(option);
                             }
                         });
                 }
@@ -62,28 +134,76 @@ function getListaBarbeirosCliente() {
 
 
 // Captura o ID do barbeiro selecionado e atualiza os serviços disponíveis
-document.getElementById('barbeiros-cadastrados').addEventListener('input', function () {
-    const input = this;
-    const datalist = document.getElementById('cliente-barbeiros-cad');
-    const option = Array.from(datalist.options).find(opt => opt.value === input.value);
+// document.getElementById('barbeiros-cadastrados').addEventListener('input', function () {
+//     const input = this;
+//     const datalist = document.getElementById('cliente-barbeiros-cad');
+//     const option = Array.from(datalist.options).find(opt => opt.value === input.value);
 
-    if (option) {
-        const barbeiroId = option.getAttribute('data-id');
-        input.setAttribute('data-id', barbeiroId);
-        atualizarServicos(barbeiroId); // Atualiza a lista de serviços disponíveis
+//     if (option) {
+//         const barbeiroId = option.getAttribute('data-id');
+//         input.setAttribute('data-id', barbeiroId);
+//         atualizarServicos(barbeiroId); // Atualiza a lista de serviços disponíveis
+//     }
+// });
+
+document.getElementById('barbeiros-cadastrados').addEventListener('change', function () {
+    const barbeiroId = this.value; // Obtém o ID do barbeiro selecionado
+
+    if (barbeiroId) {
+        atualizarServicos(barbeiroId); // Atualiza a lista de serviços com base no barbeiro selecionado
     }
 });
 
+
 // Atualiza os serviços disponíveis com base no barbeiro selecionado
 
+// function atualizarServicos(barbeiroId) {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open("GET", `${urlBarbeiros}/${barbeiroId}`, true);
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState === 4 && xhr.status === 200) {
+//             const barbeiro = JSON.parse(xhr.responseText);
+//             const datalistServico = document.getElementById('cliente-servico-cad');
+//             datalistServico.innerHTML = ''; // Limpa o datalist
+
+//             // Obtém a lista completa de serviços
+//             const xhrServicos = new XMLHttpRequest();
+//             xhrServicos.open("GET", urlServicos, true);
+//             xhrServicos.onreadystatechange = function () {
+//                 if (xhrServicos.readyState === 4 && xhrServicos.status === 200) {
+//                     const servicos = JSON.parse(xhrServicos.responseText);
+
+//                     // Filtra os serviços do barbeiro que também estão ativos
+//                     barbeiro.servico.forEach(servicoNome => {
+//                         const servicoAtivo = servicos.find(
+//                             servico => servico.nome === servicoNome && servico.status === true
+//                         );
+
+//                         if (servicoAtivo) {
+//                             // Adiciona ao datalist apenas serviços ativos
+//                             const option = document.createElement('option');
+//                             option.value = servicoAtivo.nome;
+//                             datalistServico.appendChild(option);
+//                         }
+//                     });
+//                 }
+//             };
+//             xhrServicos.send();
+//         }
+//     };
+//     xhr.send();
+// }
+
+
+// Função para atualizar os serviços disponíveis com base no barbeiro selecionado
 function atualizarServicos(barbeiroId) {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", `${urlBarbeiros}/${barbeiroId}`, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             const barbeiro = JSON.parse(xhr.responseText);
-            const datalistServico = document.getElementById('cliente-servico-cad');
-            datalistServico.innerHTML = ''; // Limpa o datalist
+            const selectServico = document.getElementById('servicos-cadastrados');
+            selectServico.innerHTML = '<option value="">Selecione um serviço</option>'; // Limpa e adiciona a opção padrão
 
             // Obtém a lista completa de serviços
             const xhrServicos = new XMLHttpRequest();
@@ -92,17 +212,17 @@ function atualizarServicos(barbeiroId) {
                 if (xhrServicos.readyState === 4 && xhrServicos.status === 200) {
                     const servicos = JSON.parse(xhrServicos.responseText);
 
-                    // Filtra os serviços do barbeiro que também estão ativos
+                    // Adiciona os serviços disponíveis ao <select>
                     barbeiro.servico.forEach(servicoNome => {
                         const servicoAtivo = servicos.find(
                             servico => servico.nome === servicoNome && servico.status === true
                         );
 
                         if (servicoAtivo) {
-                            // Adiciona ao datalist apenas serviços ativos
                             const option = document.createElement('option');
-                            option.value = servicoAtivo.nome;
-                            datalistServico.appendChild(option);
+                            option.value = servicoAtivo.id; // ID do serviço como valor
+                            option.textContent = servicoAtivo.nome; // Nome visível no select
+                            selectServico.appendChild(option);
                         }
                     });
                 }
@@ -115,10 +235,23 @@ function atualizarServicos(barbeiroId) {
 
 
 // Evento do botão "Buscar" para carregar horários do barbeiro
+// document.querySelector('input[value="Buscar"]').addEventListener('click', function () {
+//     const barbeiroInput = document.getElementById('barbeiros-cadastrados');
+//     const dataSelecionada = document.querySelector('input[type="date"]').value;
+//     const barbeiroId = barbeiroInput.getAttribute('data-id');
+
+//     if (barbeiroId && dataSelecionada) {
+//         getAgendaAtendimento(barbeiroId, dataSelecionada);
+//     } else {
+//         alert("Por favor, selecione um barbeiro e uma data.");
+//     }
+// });
+
+// Evento do botão "Buscar" para carregar horários do barbeiro
 document.querySelector('input[value="Buscar"]').addEventListener('click', function () {
     const barbeiroInput = document.getElementById('barbeiros-cadastrados');
     const dataSelecionada = document.querySelector('input[type="date"]').value;
-    const barbeiroId = barbeiroInput.getAttribute('data-id');
+    const barbeiroId = barbeiroInput.value; // Obtém o valor selecionado no <select>
 
     if (barbeiroId && dataSelecionada) {
         getAgendaAtendimento(barbeiroId, dataSelecionada);
@@ -183,42 +316,111 @@ function obterDiaSemana(data) {
 
 
 
+// // Função para incluir agendamentos
+// document.getElementById('btn-incluir-atendimento').addEventListener('click', function () {
+//     const checkboxes = document.querySelectorAll('.select-checkbox:checked');
+//     const servicoInput = document.getElementById('servicos-cadastrados');
+//     const servicoSelecionado = servicoInput.value;
+
+//     if (!servicoSelecionado) {
+//         alert('Selecione um serviço.');
+//         return;
+//     }
+
+//     // Obter o ID do serviço com base no nome selecionado
+//     const xhrServicos = new XMLHttpRequest();
+//     xhrServicos.open("GET", urlServicos, true);
+//     xhrServicos.onreadystatechange = function () {
+//         if (xhrServicos.readyState === 4 && xhrServicos.status === 200) {
+//             const servicos = JSON.parse(xhrServicos.responseText);
+//             const servico = servicos.find(svc => svc.nome === servicoSelecionado);
+
+//             if (!servico) {
+//                 alert('Serviço selecionado não encontrado.');
+//                 return;
+//             }
+
+//             const servicoId = servico.id; // ID do serviço selecionado
+
+//             const agendamentos = [];
+//             checkboxes.forEach(checkbox => {
+//                 const horario = checkbox.dataset.horario;
+//                 const data = formatarData(checkbox.dataset.data); // Formata a data corretamente
+//                 const barbeiroId = checkbox.dataset.barbeiroId;
+
+//                 agendamentos.push({
+//                     idbarbeiro: barbeiroId,
+//                     idcliente: clienteId,
+//                     idservico: servicoId,
+//                     data,
+//                     horariodeinicio: horario,
+//                     horariodefim: calcularHorarioFim(horario, 30),
+//                     status: 'Agendado'
+//                 });
+//             });
+
+//             // Envia os agendamentos para o servidor
+//             agendamentos.forEach(agendamento => {
+//                 const xhr = new XMLHttpRequest();
+//                 xhr.open("POST", urlAgendamentos, true);
+//                 xhr.setRequestHeader("Content-Type", "application/json");
+//                 xhr.onreadystatechange = function () {
+//                     if (xhr.readyState === 4 && xhr.status === 201) {
+//                         console.log("Agendamento criado:", agendamento);
+//                     }
+//                 };
+//                 xhr.send(JSON.stringify(agendamento));
+//             });
+            
+
+//             alert('Agendamentos realizados com sucesso!');
+//             location.reload();
+//         }
+//     };
+//     xhrServicos.send();
+// });
+
 // Função para incluir agendamentos
 document.getElementById('btn-incluir-atendimento').addEventListener('click', function () {
     const checkboxes = document.querySelectorAll('.select-checkbox:checked');
     const servicoInput = document.getElementById('servicos-cadastrados');
-    const servicoSelecionado = servicoInput.value;
+    const servicoSelecionadoId = servicoInput.value; // Obtém o ID do serviço selecionado
 
-    if (!servicoSelecionado) {
+    console.log("ID do serviço selecionado:", servicoSelecionadoId);
+
+    if (!servicoSelecionadoId) {
         alert('Selecione um serviço.');
         return;
     }
 
-    // Obter o ID do serviço com base no nome selecionado
     const xhrServicos = new XMLHttpRequest();
     xhrServicos.open("GET", urlServicos, true);
     xhrServicos.onreadystatechange = function () {
         if (xhrServicos.readyState === 4 && xhrServicos.status === 200) {
             const servicos = JSON.parse(xhrServicos.responseText);
-            const servico = servicos.find(svc => svc.nome === servicoSelecionado);
+            console.log("Serviços retornados da API:", servicos);
+
+            // Ajuste para comparar IDs como strings
+            const servico = servicos.find(svc => svc.id === servicoSelecionadoId);
 
             if (!servico) {
+                console.error("Serviço não encontrado para o ID:", servicoSelecionadoId);
                 alert('Serviço selecionado não encontrado.');
                 return;
             }
 
-            const servicoId = servico.id; // ID do serviço selecionado
+            console.log("Serviço encontrado:", servico);
 
             const agendamentos = [];
             checkboxes.forEach(checkbox => {
                 const horario = checkbox.dataset.horario;
-                const data = formatarData(checkbox.dataset.data); // Formata a data corretamente
+                const data = formatarData(checkbox.dataset.data);
                 const barbeiroId = checkbox.dataset.barbeiroId;
 
                 agendamentos.push({
                     idbarbeiro: barbeiroId,
                     idcliente: clienteId,
-                    idservico: servicoId,
+                    idservico: servico.id,
                     data,
                     horariodeinicio: horario,
                     horariodefim: calcularHorarioFim(horario, 30),
@@ -226,7 +428,6 @@ document.getElementById('btn-incluir-atendimento').addEventListener('click', fun
                 });
             });
 
-            // Envia os agendamentos para o servidor
             agendamentos.forEach(agendamento => {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", urlAgendamentos, true);
@@ -238,16 +439,15 @@ document.getElementById('btn-incluir-atendimento').addEventListener('click', fun
                 };
                 xhr.send(JSON.stringify(agendamento));
             });
-            
 
             alert('Agendamentos realizados com sucesso!');
             location.reload();
+        } else if (xhrServicos.readyState === 4) {
+            alert('Erro ao obter os serviços. Tente novamente.');
         }
     };
     xhrServicos.send();
 });
-
-
 
 
 
@@ -499,3 +699,5 @@ document.getElementById('btnAlterarSenha').addEventListener('click', function (e
 
     alterarSenhaUsuarioLogado();
 })
+
+

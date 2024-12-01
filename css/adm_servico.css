@@ -165,6 +165,20 @@ tr .btn-editar-servico{
     font-weight: bold;
 }
 
+tr .btn-editar-barbeiro{
+    background-color:  #fcd1a7 !important;
+    border-radius: 25px;
+    padding-left: 5px;
+    padding-left: 5px;
+    margin: 0px;
+    border: none;
+    color: black;
+    font-weight: bold;
+}
+
+
+
+
 .selected {
     background-color: #f0f8ff; /* Cor para indicar seleção */
 }
@@ -173,6 +187,19 @@ tr .btn-editar-servico{
 .modal-content{
     background-color:#fcd1a7;
 
+}
+
+.modal-footer button[type="button"]{
+    background-color: #c79655 ;
+    text-align: center;
+    justify-content: center;
+    border-radius: 25px;  
+    align-content: center;
+    color: #7A4D2C;
+    padding: 10px;
+    margin: 15px;
+    border: none;
+    font-weight: bold
 }
 
 .modal-footer button[type="button"]{

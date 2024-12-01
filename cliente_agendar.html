@@ -9,6 +9,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/cliente_agendar.css">
     <script src="js/cliente_agendar.js" defer></script>
+    <link rel="icon" href="img/Logo Zé Barbeiro 2.png" type="image/x-icon">
 </head>
 
 <body>
@@ -58,14 +59,13 @@
                                                 src="img/ICONE USUARIO.png" style="max-height: 70px; max-width: 20px"
                                                 alt="">Minha conta</a>
                                         <a class="btn" href="#" role="button" style="background-color:#fcd1a7 ;"
-                                        data-bs-toggle="modal" data-bs-target="#alterarSenhaModal"><img
+                                            data-bs-toggle="modal" data-bs-target="#alterarSenhaModal"><img
                                                 src="img/cadeado.png" style="max-height: 70px; max-width: 20px"
                                                 alt="">Alterar senha</a>
                                     </div>
                                     <div class="modal-footer border-0 p-0 m-0">
                                         <a class="btn" href="index.html" role="button"
-                                            style="background-color:#fcd1a7 ;" 
-                                            ><img src="img/sair.png"
+                                            style="background-color:#fcd1a7 ;"><img src="img/sair.png"
                                                 style="max-height: 70px; max-width: 20px" alt="">Sair</a>
 
                                     </div>
@@ -75,7 +75,7 @@
 
                         <!-- Modal Minha Conta -->
                         <div class="modal fade" id="minhaContaModal" tabindex="-1"
-                            aria-labelledby="minhaContaModalLabel" aria-hidden="true" >
+                            aria-labelledby="minhaContaModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -100,8 +100,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn"
-                                            data-bs-dismiss="modal">Fechar</button>
+                                        <button type="button" class="btn" data-bs-dismiss="modal">Fechar</button>
                                     </div>
                                 </div>
                             </div>
@@ -166,25 +165,38 @@
             <div class="formulario-consulta">
                 <form name="agenda_atendimentos" method="POST">
 
-                    Selecionar Barbeiro: <br> <input type="options" list="cliente-barbeiros-cad"
-                        name="cliente-barbeiros-cad" id="barbeiros-cadastrados"><br>
-                    <datalist id="cliente-barbeiros-cad">
-                        <!-- <option value="Barbeiro 01">
+                    Selecionar Barbeiro: <br>
+                    <!-- <input type="options" list="cliente-barbeiros-cad" name="cliente-barbeiros-cad" id="barbeiros-cadastrados"><br>
+                    <datalist id="cliente-barbeiros-cad"> -->
+                    <!-- <option value="Barbeiro 01">
                         <option value="Barbeiro 02">
                         <option value="Barbeiro 03">
                         <option value="Barbeiro 04">
                         <option value="Barbeiro 05"> -->
-                    </datalist>
+                    <!-- </datalist> -->
 
-                    Selecionar Serviço: <br> <input type="options" list="cliente-servico-cad" name="cliente-servico-cad"
+                    
+                    <select name="cliente-barbeiros-cad" id="barbeiros-cadastrados">
+                        <!-- As opções serão adicionadas dinamicamente pelo JavaScript -->
+                    </select><br>
+
+
+
+                    Selecionar Serviço: <br> 
+                    <!-- <input type="options" list="cliente-servico-cad" name="cliente-servico-cad"
                         id="servicos-cadastrados"><br>
-                    <datalist id="cliente-servico-cad">
+                    <datalist id="cliente-servico-cad"> -->
                         <!-- <option value="Barbeiro 01">
                         <option value="Barbeiro 02">
                         <option value="Barbeiro 03">
                         <option value="Barbeiro 04">
                         <option value="Barbeiro 05"> -->
-                    </datalist>
+                    <!-- </datalist> -->
+
+                    <select name="cliente-servico-cad" id="servicos-cadastrados">
+                        <option value="">Selecione um serviço</option>
+                        <!-- As opções serão preenchidas dinamicamente pelo JavaScript -->
+                    </select><br>
 
                     Data: <br>
 

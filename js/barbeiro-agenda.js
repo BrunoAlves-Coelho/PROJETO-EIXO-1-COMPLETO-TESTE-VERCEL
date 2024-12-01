@@ -14,10 +14,45 @@ const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 if (!usuarioLogado || usuarioLogado.tipousuario !== 'barbeiro') {
     alert('Você não tem permissão para acessar esta página!');
     window.location.href = 'index.html'; // Redireciona para a página de login
+} else {
+    const nomeUsuario = usuarioLogado.nome;
+    const saudacaoChaveBarbeiro = `saudacaoExibidaBarbeiro${usuarioLogado.id}`; // Cria uma chave única por usuário
+    const saudacaoExibidaBarbeiro = localStorage.getItem(saudacaoChaveBarbeiro);
+
+    if (!saudacaoExibidaBarbeiro) {
+        // Exibe a saudação no primeiro acesso
+        alert(`Olá, ${nomeUsuario}!`);
+        localStorage.setItem(saudacaoChaveBarbeiro, 'true'); // Marca como exibida para este usuário
+    }
 }
+
+// else {
+//     // Verifica se o nome está disponível e exibe a saudação
+//     const nomeUsuario = usuarioLogado.nome;
+//     alert(`Olá, ${nomeUsuario}!`);
+// }
+
+
 
 const barbeiroId = usuarioLogado.id;
 
+document.addEventListener('DOMContentLoaded', function () {
+    const dataInput = document.querySelector('input[type="date"]');
+
+    // Adiciona validação para impedir datas anteriores à atual
+    dataInput.addEventListener('change', function () {
+        const dataSelecionada = new Date(this.value + "T00:00:00");
+        const dataAtual = new Date();
+        
+        // Zera as horas da data atual para comparação precisa
+        dataAtual.setHours(0, 0, 0, 0);
+
+        if (dataSelecionada < dataAtual) {
+            alert("Você não pode selecionar uma data anterior à data atual.");
+            this.value = ''; // Limpa o campo de data selecionada
+        }
+    });
+});
 
 
 // Evento de clique no botão "Buscar"
@@ -455,3 +490,64 @@ document.getElementById('btnAlterarSenha').addEventListener('click', function (e
 
     alterarSenhaUsuarioLogado();
 })
+
+// Evento do botão "Cancelar Bloqueio/Agendamento"
+document.getElementById('btn-cancelar-agendamento').addEventListener('click', function () {
+    const checkboxes = document.querySelectorAll('.select-checkbox:checked');
+
+    if (checkboxes.length === 0) {
+        alert('Selecione pelo menos um agendamento para cancelar.');
+        return;
+    }
+
+    checkboxes.forEach(checkbox => {
+        const horario = checkbox.dataset.horario;
+        const data = checkbox.dataset.data;
+        const barbeiroId = checkbox.dataset.barbeiroId;
+        const status = checkbox.dataset.status;
+
+        // Verifica se o status é "Bloqueado" ou "Agendado Barbeiro"
+        if (status === 'Bloqueado' || status === 'Agendado Barbeiro') {
+            // Busca o agendamento correspondente no servidor
+            const xhrGet = new XMLHttpRequest();
+            xhrGet.open(
+                'GET',
+                `${urlAgendamentos}?idbarbeiro=${barbeiroId}&data=${data}&horariodeinicio=${horario}`,
+                true
+            );
+            xhrGet.onload = function () {
+                if (xhrGet.status === 200) {
+                    const agendamentos = JSON.parse(xhrGet.responseText);
+
+                    if (agendamentos.length > 0) {
+                        const agendamento = agendamentos[0];
+
+                        // Exclui o agendamento
+                        const xhrDelete = new XMLHttpRequest();
+                        xhrDelete.open('DELETE', `${urlAgendamentos}/${agendamento.id}`, true);
+                        xhrDelete.onload = function () {
+                            if (xhrDelete.status === 200) {
+                                console.log(`Agendamento ${agendamento.id} cancelado com sucesso.`);
+                            } else {
+                                alert(`Erro ao cancelar o agendamento ${agendamento.id}.`);
+                            }
+                        };
+                        xhrDelete.send();
+                    }
+                } else {
+                    alert('Erro ao buscar o agendamento para exclusão.');
+                }
+            };
+            xhrGet.send();
+            alert('Cancelamentos realizados com sucesso!');
+        } else {
+            alert(`O horário ${horario} não está no status "Bloqueado" ou "Agendado Barbeiro".`);
+        }
+       
+    });
+
+    
+    location.reload();
+});
+
+

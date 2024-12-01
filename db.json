@@ -62,6 +62,24 @@
       "telefone": "(31)33311-8111",
       "dataNascimento": "2000-12-24",
       "tipousuario": "barbeiro"
+    },
+    {
+      "id": "4b8b",
+      "nome": "cliente 06",
+      "email": "cliente06@cliente.com.br",
+      "senha": "12345",
+      "telefone": "(31)33311-8111",
+      "dataNascimento": "2000-12-24",
+      "tipousuario": "cliente"
+    },
+    {
+      "id": "2a71",
+      "nome": "Barbeiro 05",
+      "email": "bariveiro07@barbeiro.com.br",
+      "senha": "12345",
+      "telefone": "(31)97144-8208",
+      "dataNascimento": "2000-12-24",
+      "tipousuario": "barbeiro"
     }
   ],
   "barbeiros": [
@@ -88,9 +106,9 @@
     {
       "id": "ef75",
       "servico": [
+        "Corte de Cabelo",
         "Corte Infantil",
-        "Barba c/ Navalha",
-        "Barba Desenhada"
+        "Barba c/ Navalha"
       ],
       "statusBarbeiro": true,
       "parametrosAgenda": {
@@ -101,8 +119,8 @@
           "Quinta",
           "Sexta"
         ],
-        "horarioInicial": "08:00",
-        "horarioFinal": "11:00"
+        "horarioInicial": "16:00",
+        "horarioFinal": "19:00"
       }
     },
     {
@@ -143,6 +161,27 @@
         ],
         "horarioInicial": "08:00",
         "horarioFinal": "20:00"
+      }
+    },
+    {
+      "id": "2a71",
+      "servico": [
+        "Corte de Cabelo",
+        "Corte Infantil",
+        "Barba c/ Navalha",
+        "Barba Desenhada"
+      ],
+      "statusBarbeiro": true,
+      "parametrosAgenda": {
+        "diasDisponiveis": [
+          "Segunda",
+          "Terca",
+          "Quarta",
+          "Quinta",
+          "Sexta"
+        ],
+        "horarioInicial": "08:00",
+        "horarioFinal": "12:00"
       }
     }
   ],
@@ -224,7 +263,7 @@
     {
       "id": "1",
       "idbarbeiro": "1",
-      "idcliente": "3",
+      "idcliente": "2",
       "idservico": "1",
       "data": "01/10/2024",
       "horariodeinicio": "08:00",
@@ -234,7 +273,7 @@
     {
       "id": "1",
       "idbarbeiro": "1",
-      "idcliente": "3",
+      "idcliente": "2",
       "idservico": "1",
       "data": "01/10/2024",
       "horariodeinicio": "13:00",
@@ -244,7 +283,7 @@
     {
       "id": "1",
       "idbarbeiro": "1",
-      "idcliente": "3",
+      "idcliente": "2",
       "idservico": "1",
       "data": "01/10/2024",
       "horariodeinicio": "15:30",
@@ -459,6 +498,136 @@
       "data": "01/10/2024",
       "horariodeinicio": "08:00",
       "horariodefim": "08:30",
+      "status": "Concluído"
+    },
+    {
+      "id": "9bff",
+      "idbarbeiro": "5e36",
+      "idcliente": "2",
+      "idservico": "6",
+      "data": "26/11/2024",
+      "horariodeinicio": "20:00",
+      "horariodefim": "20:30",
+      "status": "Agendado"
+    },
+    {
+      "id": "0f7d",
+      "idbarbeiro": "ef75",
+      "idcliente": "2",
+      "idservico": "2",
+      "data": "28/11/2024",
+      "horariodeinicio": "10:00",
+      "horariodefim": "10:30",
+      "status": "Concluído"
+    },
+    {
+      "id": "7303",
+      "idbarbeiro": "1",
+      "idcliente": "2",
+      "idservico": "2",
+      "data": "29/11/2024",
+      "horariodeinicio": "08:00",
+      "horariodefim": "08:30",
+      "status": "Agendado"
+    },
+    {
+      "id": "2fe7",
+      "idbarbeiro": "1",
+      "idcliente": "2",
+      "idservico": "2",
+      "data": "02/12/2024",
+      "horariodeinicio": "08:00",
+      "horariodefim": "08:30",
+      "status": "Agendado"
+    },
+    {
+      "id": "181b",
+      "idbarbeiro": "ef75",
+      "idcliente": "2",
+      "idservico": "2",
+      "data": "29/11/2024",
+      "horariodeinicio": "08:00",
+      "horariodefim": "08:30",
+      "status": "Agendado"
+    },
+    {
+      "id": "16e1",
+      "idbarbeiro": "1",
+      "idcliente": "2",
+      "idservico": "2",
+      "data": "03/12/2024",
+      "horariodeinicio": "08:00",
+      "horariodefim": "08:30",
+      "status": "Agendado"
+    },
+    {
+      "id": "26d4",
+      "idbarbeiro": "ef75",
+      "idcliente": "2",
+      "idservico": "1",
+      "data": "29/11/2024",
+      "horariodeinicio": "16:00",
+      "horariodefim": "16:30",
+      "status": "Concluído"
+    },
+    {
+      "id": "0e34",
+      "idbarbeiro": "ef75",
+      "idcliente": null,
+      "idservico": null,
+      "data": "29/11/2024",
+      "horariodeinicio": "18:30",
+      "horariodefim": "19:00",
+      "status": "Bloqueado"
+    },
+    {
+      "id": "c536",
+      "idbarbeiro": "ef75",
+      "idcliente": null,
+      "idservico": null,
+      "data": "29/11/2024",
+      "horariodeinicio": "19:00",
+      "horariodefim": "19:30",
+      "status": "Bloqueado"
+    },
+    {
+      "id": "70c7",
+      "idbarbeiro": "ef75",
+      "idcliente": "3",
+      "idservico": "1",
+      "data": "29/11/2024",
+      "horariodeinicio": "16:30",
+      "horariodefim": "17:00",
+      "status": "Agendado"
+    },
+    {
+      "id": "be6d",
+      "idbarbeiro": "ef75",
+      "idcliente": null,
+      "idservico": null,
+      "data": "29/11/2024",
+      "horariodeinicio": "17:30",
+      "horariodefim": "18:00",
+      "status": "Agendado Barbeiro"
+    },
+    {
+      "id": "24a8",
+      "idbarbeiro": "5e36",
+      "idcliente": "4b8b",
+      "idservico": "4",
+      "data": "02/12/2024",
+      "horariodeinicio": "08:00",
+      "horariodefim": "08:30",
+      "status": "Agendado"
+    },
+    {
+      "id": "f2de",
+      "idbarbeiro": "ef75",
+      "idcliente": null,
+      "idservico": null,
+      "data": "02/12/2024",
+      "horariodeinicio": "17:00",
+      "horariodefim": "17:30",
       "status": "Concluído"
     }
   ]
