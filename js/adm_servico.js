@@ -1,3 +1,14 @@
+// URLs das APIs
+// const urlUsuarios = 'http://localhost:3000/usuarios';
+// const urlBarbeiros = 'http://localhost:3000/barbeiros';
+// const urlAgendamentos = 'http://localhost:3000/agendamento';
+// const urlServicos = 'http://localhost:3000/servicos';
+
+var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("servicos-cadastrados");
@@ -40,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tbody = document.createElement("tbody");
 
         // Busca os serviços do db.json
-        fetch("http://localhost:3000/servicos")
+        fetch(urlServicos)
             .then(response => response.json())
             .then(servicos => {
                 servicos.forEach(servico => {
@@ -103,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const status = selectEditStatus.value === "Ativo"; // Converte para booleano
 
         // Atualiza o serviço no db.json
-        fetch(`http://localhost:3000/servicos/${id}`, {
+        fetch(`${urlServicos}/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -129,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const status = true;
 
         // Adiciona um novo serviço no db.json
-        fetch("http://localhost:3000/servicos", {
+        fetch(urlServicos, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -156,10 +167,10 @@ document.addEventListener("DOMContentLoaded", () => {
 let selectedRow = null;
 
 
-var urlUsuario = 'http://localhost:3000/usuarios'; // Rota para usuarios
-var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para 
-var urlServico = 'http://localhost:3000/servicos'; // Rota para barbeiros
-var urlAgendamento = 'http://localhost:3000/agendamentos'; // Rota para barbeiros
+// var urlUsuario = 'http://localhost:3000/usuarios'; // Rota para usuarios
+// var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para 
+// var urlServico = 'http://localhost:3000/servicos'; // Rota para barbeiros
+// var urlAgendamento = 'http://localhost:3000/agendamentos'; // Rota para barbeiros
 
 // Verifica se o administrador está logado
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -175,7 +186,7 @@ function carregarDadosUsuarioLogado() {
     if (usuarioLogado && usuarioLogado.id) {
         // Faz a requisição para buscar os dados do usuário logado
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `${urlUsuario}/${usuarioLogado.id}`, true);
+        xhr.open('GET', `${urlUsuarios}/${usuarioLogado.id}`, true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Converte a resposta JSON em objeto
@@ -218,7 +229,7 @@ function alterarSenhaUsuarioLogado() {
 
     // Verifica se a senha atual está correta
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `${urlUsuario}/${usuarioLogado.id}`, true);
+    xhr.open('GET', `${urlUsuarios}/${usuarioLogado.id}`, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             const usuario = JSON.parse(xhr.responseText);
@@ -230,7 +241,7 @@ function alterarSenhaUsuarioLogado() {
 
             // Atualiza a senha do usuário
             const xhrUpdate = new XMLHttpRequest();
-            xhrUpdate.open('PATCH', `${urlUsuario}/${usuarioLogado.id}`, true);
+            xhrUpdate.open('PATCH', `${urlUsuarios}/${usuarioLogado.id}`, true);
             xhrUpdate.setRequestHeader('Content-Type', 'application/json');
             xhrUpdate.onreadystatechange = function () {
                 if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {

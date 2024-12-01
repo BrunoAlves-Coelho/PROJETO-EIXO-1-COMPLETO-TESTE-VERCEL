@@ -1,8 +1,15 @@
 // URLs das APIs
-const urlUsuarios = 'http://localhost:3000/usuarios';
-const urlBarbeiros = 'http://localhost:3000/barbeiros';
-const urlAgendamentos = 'http://localhost:3000/agendamento';
-const urlServicos = 'http://localhost:3000/servicos';
+// const urlUsuarios = 'http://localhost:3000/usuarios';
+// const urlBarbeiros = 'http://localhost:3000/barbeiros';
+// const urlAgendamentos = 'http://localhost:3000/agendamento';
+// const urlServicos = 'http://localhost:3000/servicos';
+
+
+var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
+
 
 // Verifica se o administrador está logado
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));

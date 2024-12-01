@@ -1,8 +1,15 @@
-var url1 = 'http://localhost:3000/unidades'; //Rota unidades
-var urlUsuario = 'http://localhost:3000/usuarios'; // Rota para usuarios
-var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para 
-var urlServico = 'http://localhost:3000/servicos'; // Rota para barbeiros
-var urlAgendamento = 'http://localhost:3000/agendamentos'; // Rota para barbeiros
+// var url1 = 'http://localhost:3000/unidades'; //Rota unidades
+// var urlUsuarios = 'http://localhost:3000/usuarios'; // Rota para usuarios
+// var urlBarbeiros = 'http://localhost:3000/barbeiros'; // Rota para 
+// var urlServicos = 'http://localhost:3000/servicos'; // Rota para barbeiros
+// var urlAgendamentos = 'http://localhost:3000/agendamentos'; // Rota para barbeiros
+
+
+var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
+var urlUnidades = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/unidades'; // Rota para barbeiros
 
 // Verifica se o administrador está logado
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -30,7 +37,7 @@ document.getElementById('edit-salvar-unidade').addEventListener('click', functio
 
 function getdata() {
     var requisicao = new XMLHttpRequest();
-    requisicao.open('GET', url1, true);
+    requisicao.open('GET', urlUnidades, true);
     requisicao.onload = function () {
         if (requisicao.status == 200) {
             var dados = JSON.parse(requisicao.responseText);
@@ -77,10 +84,10 @@ function createItem() {
     const jsonData1 = JSON.stringify(unidade);
     //Inserindo usuario
 
-    // Criar e configurar o XMLHttpRequest para usuario
+    // Criar e configurar o XMLHttpRequest para unidades
 
     const xhr1 = new XMLHttpRequest();
-    xhr1.open("POST", "http://localhost:3000/unidades", true);
+    xhr1.open("POST", urlUnidades, true);
     xhr1.setRequestHeader("Content-Type", "application/json");
 
 
@@ -105,7 +112,7 @@ function editarUnidade(id) {
     
             document.getElementById("edit-idd").value = id;
             var requisicaoUnidade = new XMLHttpRequest();
-            requisicaoUnidade.open('GET', `${url1}/${id}`, true);
+            requisicaoUnidade.open('GET', `${urlUnidades}/${id}`, true);
             requisicaoUnidade.onload = function () {
                 if (requisicaoUnidade.status === 200) {
                     var unidade = JSON.parse(requisicaoUnidade.responseText);
@@ -155,7 +162,7 @@ function salvarEdicao() {
     };
             // Requisição PATCH para atualizar o barbeiro após sucesso no usuário
             const requisicaoUnidade = new XMLHttpRequest();
-            requisicaoUnidade.open('PATCH', `${url1}/${id}`, true);
+            requisicaoUnidade.open('PATCH', `${urlUnidades}/${id}`, true);
             requisicaoUnidade.setRequestHeader("Content-Type", "application/json");
             requisicaoUnidade.onload = function () {
                 if (requisicaoUnidade.status === 200) {
@@ -182,7 +189,7 @@ function carregarDadosUsuarioLogado() {
     if (usuarioLogado && usuarioLogado.id) {
         // Faz a requisição para buscar os dados do usuário logado
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `${urlUsuario}/${usuarioLogado.id}`, true);
+        xhr.open('GET', `${urlUsuarios}/${usuarioLogado.id}`, true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Converte a resposta JSON em objeto
@@ -227,7 +234,7 @@ function alterarSenhaUsuarioLogado() {
 
     // Verifica se a senha atual está correta
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `${urlUsuario}/${usuarioLogado.id}`, true);
+    xhr.open('GET', `${urlUsuarios}/${usuarioLogado.id}`, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             const usuario = JSON.parse(xhr.responseText);
@@ -239,7 +246,7 @@ function alterarSenhaUsuarioLogado() {
 
             // Atualiza a senha do usuário
             const xhrUpdate = new XMLHttpRequest();
-            xhrUpdate.open('PATCH', `${urlUsuario}/${usuarioLogado.id}`, true);
+            xhrUpdate.open('PATCH', `${urlUsuarios}/${usuarioLogado.id}`, true);
             xhrUpdate.setRequestHeader('Content-Type', 'application/json');
             xhrUpdate.onreadystatechange = function () {
                 if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {

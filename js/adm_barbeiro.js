@@ -1,14 +1,15 @@
 // var urlUsuario = 'http://localhost:3000/usuarios'; // Rota para usuarios
 // var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para 
 // var urlServico = 'http://localhost:3000/servicos'; // Rota para barbeiros
-// var urlAgendamento = 'http://localhost:3000/agendamentos'; // Rota para barbeiros
+// var urlAgendamento = 'http://localhost:3000/agendamento'; // Rota para barbeiros
 
-https://<nome-do-projeto>.vercel.app/api/usuarios
+// https://<nome-do-projeto>.vercel.app/api/usuarios
+// https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/
 
-var urlUsuario = 'https://<nome-do-projeto>.vercel.app/api/usuarios'; // Rota para usuarios
-var urlBarbeiro = 'https://<nome-do-projeto>.vercel.app/api/barbeiros'; // Rota para 
-var urlServico = 'https://<nome-do-projeto>.vercel.app/api/servicos'; // Rota para barbeiros
-var urlAgendamento = 'https://<nome-do-projeto>.vercel.app/api/agendamentos'; // Rota para barbeiros
+var urlUsuario = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiro = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServico = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamento = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
 
 
 // Verifica se o administrador está logado

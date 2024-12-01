@@ -1,8 +1,16 @@
+// // Definição das URLs
+
+// var urlUsuarios = 'http://localhost:3000/usuarios'; // Rota para usuários
+// var urlBarbeiros = 'http://localhost:3000/barbeiros'; // Rota para barbeiros
+// var urlAgendamento = 'http://localhost:3000/agendamento'; // Rota para agendamentos
+// var urlServicos = 'http://localhost:3000/servicos'; // Rota para serviços
+
 // Definição das URLs
-var urlUsuarios = 'http://localhost:3000/usuarios'; // Rota para usuários
-var urlBarbeiros = 'http://localhost:3000/barbeiros'; // Rota para barbeiros
-var urlAgendamento = 'http://localhost:3000/agendamento'; // Rota para agendamentos
-var urlServicos = 'http://localhost:3000/servicos'; // Rota para serviços
+var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamento = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
+
 
 // Verifica se o administrador está logado
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));

@@ -1,8 +1,14 @@
 // URLs das APIs
-var urlUsuarios = 'http://localhost:3000/usuarios';
-var urlBarbeiros = 'http://localhost:3000/barbeiros';
-var urlAgendamentos = 'http://localhost:3000/agendamento';
-var urlServicos = 'http://localhost:3000/servicos';
+// var urlUsuarios = 'http://localhost:3000/usuarios';
+// var urlBarbeiros = 'http://localhost:3000/barbeiros';
+// var urlAgendamentos = 'http://localhost:3000/agendamento';
+// var urlServicos = 'http://localhost:3000/servicos';
+
+var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
+var urlUnidades = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/unidades'; // Rota para barbeiros
 
 // // ID do barbeiro logado (simulado)
 // const barbeiroId = "1";

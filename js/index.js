@@ -1,8 +1,14 @@
 // Definição das URLs
-var urlUsuarios = 'http://localhost:3000/usuarios'; // Rota para usuários
-var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para barbeiros
-var urlAgendamento = 'http://localhost:3000/agendamento'; // Rota para agendamentos
-var urlServicos = 'http://localhost:3000/servicos'; // Rota para serviços
+// var urlUsuarios = 'http://localhost:3000/usuarios'; // Rota para usuários
+// var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para barbeiros
+// var urlAgendamento = 'http://localhost:3000/agendamento'; // Rota para agendamentos
+// var urlServicos = 'http://localhost:3000/servicos'; // Rota para serviços
+
+var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
+var urlUnidades = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/unidades'; // Rota para barbeiros
 
 
 document.getElementById('efetuar-login').addEventListener('click', function (event) {
@@ -131,7 +137,7 @@ function createUser() {
       // Conversão para JSON e envio dos dados do usuário
       const jsonData1 = JSON.stringify(usuario);
       const xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", "http://localhost:3000/usuarios", true);
+      xhr1.open("POST", urlUsuarios, true);
       xhr1.setRequestHeader("Content-Type", "application/json");
 
       // Função de callback para quando a requisição de usuário for completada
