@@ -89,6 +89,15 @@
       "dataNascimento": "1990-01-20",
       "tipousuario": "barbeiro",
       "id": "BFQW-UF"
+    },
+    {
+      "nome": "Barbeiro 07",
+      "email": "barbeiro07@barbeiro.com.br",
+      "senha": "12345",
+      "telefone": "(31)33311-8111",
+      "dataNascimento": "2000-01-01",
+      "tipousuario": "barbeiro",
+      "id": "j-ggcFi"
     }
   ],
   "barbeiros": [
@@ -214,6 +223,26 @@
         ],
         "horarioInicial": "08:00",
         "horarioFinal": "18:00"
+      }
+    },
+    {
+      "id": "j-ggcFi",
+      "servico": [
+        "Corte de Cabelo",
+        "Barba c/ Navalha",
+        "Hidratação Cabelo"
+      ],
+      "statusBarbeiro": true,
+      "parametrosAgenda": {
+        "diasDisponiveis": [
+          "Segunda",
+          "Terca",
+          "Quarta",
+          "Quinta",
+          "Sexta"
+        ],
+        "horarioInicial": "08:00",
+        "horarioFinal": "12:00"
       }
     }
   ],
