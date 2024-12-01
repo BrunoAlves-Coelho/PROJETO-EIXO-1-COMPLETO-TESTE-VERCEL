@@ -1,16 +1,12 @@
 {
-  "name": "barber-app",
+  "name": "json-server-vercel",
   "version": "1.0.0",
-  "description": "Aplicação de gerenciamento de barbearia",
-  "main": "server.js",
+  "description": "Deploy JSON Server to Vercel",
+  "main": "api/server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node api/server.js"
   },
   "dependencies": {
-    "json-server": "^1.0.0-beta.3"
-  },
-  "engines": {
-    "node": "18.x"
-  },
-  "license": "MIT"
+    "json-server": "^0.17.4"
+  }
 }
