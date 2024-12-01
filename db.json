@@ -80,6 +80,15 @@
       "telefone": "(31)97144-8208",
       "dataNascimento": "2000-12-24",
       "tipousuario": "barbeiro"
+    },
+    {
+      "nome": "Barbeiro 06",
+      "email": "barbeiro06@barbeiro.com",
+      "senha": "12345",
+      "telefone": "(31)99951-2345",
+      "dataNascimento": "1990-01-20",
+      "tipousuario": "barbeiro",
+      "id": "BFQW-UF"
     }
   ],
   "barbeiros": [
@@ -182,6 +191,29 @@
         ],
         "horarioInicial": "08:00",
         "horarioFinal": "12:00"
+      }
+    },
+    {
+      "id": "BFQW-UF",
+      "servico": [
+        "Corte de Cabelo",
+        "Corte Infantil",
+        "Barba c/ Navalha",
+        "Barba Desenhada",
+        "Hidratação Cabelo",
+        "Hidratação Barba"
+      ],
+      "statusBarbeiro": true,
+      "parametrosAgenda": {
+        "diasDisponiveis": [
+          "Segunda",
+          "Terca",
+          "Quarta",
+          "Quinta",
+          "Sexta"
+        ],
+        "horarioInicial": "08:00",
+        "horarioFinal": "18:00"
       }
     }
   ],
