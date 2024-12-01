@@ -197,3 +197,18 @@ h5{
     
 
 }
+
+@media screen and (max-width:576px) {
+    .table {
+        margin: 15px;
+        padding: 10px;
+        background-color: white;
+    }
+
+
+    .servicoValor {
+        display: none;
+    }
+
+
+}
