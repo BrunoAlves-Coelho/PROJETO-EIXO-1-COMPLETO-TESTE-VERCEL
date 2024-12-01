@@ -186,6 +186,15 @@ function preencherTabela(barbeiroId, horarioInicial, horarioFinal, agendamentos,
         const cellStatus = document.createElement('td');
         const cellCheckbox = document.createElement('td');
 
+         // Adiciona classes às células
+         cellData.classList.add('data');
+         cellCliente.classList.add('cliente');
+         cellServico.classList.add('servico');
+         cellValor.classList.add('servicoValor');
+         cellHorario.classList.add('horario');
+         cellStatus.classList.add('status');
+         cellCheckbox.classList.add('acao');
+
         cellData.textContent = dataSelecionada;
         cellCliente.textContent = cliente ? cliente.nome : '';
         cellServico.textContent = servico ? servico.nome : '';

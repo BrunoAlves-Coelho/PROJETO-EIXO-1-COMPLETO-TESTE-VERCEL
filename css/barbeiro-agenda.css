@@ -206,3 +206,52 @@ h5{
     
 
 }
+
+
+
+/* @media screen and (max-width:711px) {
+
+    .cliente {
+        display: none;
+    }
+
+
+ 
+
+    .table {
+        margin: 15px;
+        padding: 10px;
+        background-color: white;
+    }
+
+
+
+    .servicoValor {
+        display: none;
+    }
+
+
+} */
+
+
+@media screen and (max-width:576px) {
+
+
+
+    .data {
+        display: none;
+    }
+
+    .table {
+        margin: 15px;
+        padding: 10px;
+        background-color: white;
+    }
+
+
+    .servicoValor {
+        display: none;
+    }
+
+
+}
