@@ -1,8 +1,3 @@
-// URLs das APIs
-// const urlUsuarios = 'http://localhost:3000/usuarios';
-// const urlBarbeiros = 'http://localhost:3000/barbeiros';
-// const urlAgendamentos = 'http://localhost:3000/agendamento';
-// const urlServicos = 'http://localhost:3000/servicos';
 
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("servicos-cadastrados");
@@ -108,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const status = selectEditStatus.value === "Ativo"; // Converte para booleano
 
         // Atualiza o serviço no db.json
-        fetch(`https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos"/${id}`, {
+        fetch(`https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -139,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, valor: preco, tempo, status})
+            body: JSON.stringify({ nome, valor: preco, tempo, status })
         })
             .then(response => response.json())
             .then(() => {
@@ -161,17 +156,15 @@ document.addEventListener("DOMContentLoaded", () => {
 let selectedRow = null;
 
 
-
 // var urlUsuario = 'http://localhost:3000/usuarios'; // Rota para usuarios
 // var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para 
 // var urlServico = 'http://localhost:3000/servicos'; // Rota para barbeiros
 // var urlAgendamento = 'http://localhost:3000/agendamentos'; // Rota para barbeiros
 
-var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
-var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
-var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
-var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
-
+var urlUsuario = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiro = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServico = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamento = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
 
 // Verifica se o administrador está logado
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -187,7 +180,7 @@ function carregarDadosUsuarioLogado() {
     if (usuarioLogado && usuarioLogado.id) {
         // Faz a requisição para buscar os dados do usuário logado
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `${urlUsuarios}/${usuarioLogado.id}`, true);
+        xhr.open('GET', `${urlUsuario}/${usuarioLogado.id}`, true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Converte a resposta JSON em objeto
@@ -230,7 +223,7 @@ function alterarSenhaUsuarioLogado() {
 
     // Verifica se a senha atual está correta
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `${urlUsuarios}/${usuarioLogado.id}`, true);
+    xhr.open('GET', `${urlUsuario}/${usuarioLogado.id}`, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             const usuario = JSON.parse(xhr.responseText);
@@ -242,7 +235,7 @@ function alterarSenhaUsuarioLogado() {
 
             // Atualiza a senha do usuário
             const xhrUpdate = new XMLHttpRequest();
-            xhrUpdate.open('PATCH', `${urlUsuarios}/${usuarioLogado.id}`, true);
+            xhrUpdate.open('PATCH', `${urlUsuario}/${usuarioLogado.id}`, true);
             xhrUpdate.setRequestHeader('Content-Type', 'application/json');
             xhrUpdate.onreadystatechange = function () {
                 if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {
