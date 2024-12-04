@@ -173,8 +173,6 @@ var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/s
 var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
 
 
-
-
 // Verifica se o administrador está logado
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 if (!usuarioLogado || usuarioLogado.tipousuario !== 'administrador') {
