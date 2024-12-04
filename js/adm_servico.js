@@ -108,12 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const status = selectEditStatus.value === "Ativo"; // Converte para booleano
 
         // Atualiza o serviço no db.json
-        fetch(`https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos/${id}`, {
+        fetch(`https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos"/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome: nome, valor: preco, tempo: tempo, status: status  }) // Inclui o status booleano
+            body: JSON.stringify({ nome, valor: preco, tempo, status }) // Inclui o status booleano
         })
             .then(response => response.json())
             .then(() => {
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Função para salvar um novo serviço (modal de cadastro)
-    document.querySelector('#cadastrar-servico-salvar').addEventListener('click', function () {
+    document.querySelector('#cadastroModalServico .btn-popup').addEventListener('click', function () {
         const nome = inputNome.value;
         const preco = inputPreco.value;
         const tempo = inputTempo.value;
@@ -161,6 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
 let selectedRow = null;
 
 
+
+// var urlUsuario = 'http://localhost:3000/usuarios'; // Rota para usuarios
+// var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para 
+// var urlServico = 'http://localhost:3000/servicos'; // Rota para barbeiros
+// var urlAgendamento = 'http://localhost:3000/agendamentos'; // Rota para barbeiros
+
 var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
 var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
 var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
@@ -168,10 +174,6 @@ var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/a
 
 
 
-// var urlUsuario = 'http://localhost:3000/usuarios'; // Rota para usuarios
-// var urlBarbeiro = 'http://localhost:3000/barbeiros'; // Rota para 
-// var urlServico = 'http://localhost:3000/servicos'; // Rota para barbeiros
-// var urlAgendamento = 'http://localhost:3000/agendamentos'; // Rota para barbeiros
 
 // Verifica se o administrador está logado
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
