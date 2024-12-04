@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Função para salvar as alterações do serviço (modal de edição)
-    document.querySelector('#edit-cadastroModalServico .btn-popup').addEventListener('click', function () {
+    document.querySelector('#cadastrar-servico-salvar#').addEventListener('click', function () {
         const id = hiddenEditId.value;
         const nome = inputEditNome.value;
         const preco = inputEditPreco.value;
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const status = selectEditStatus.value === "Ativo"; // Converte para booleano
 
         // Atualiza o serviço no db.json
-        fetch(`"https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos"/${id}`, {
+        fetch(`https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
