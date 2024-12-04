@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, valor: preco, tempo, status }) // Inclui o status booleano
+            body: JSON.stringify({ nome: nome, valor: preco, tempo: tempo, status: status  }) // Inclui o status booleano
         })
             .then(response => response.json())
             .then(() => {
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, valor: preco, tempo, status })
+            body: JSON.stringify({ nome: nome, valor: preco, tempo: tempo, status: status })
         })
             .then(response => response.json())
             .then(() => {
