@@ -4,12 +4,6 @@
 // const urlAgendamentos = 'http://localhost:3000/agendamento';
 // const urlServicos = 'http://localhost:3000/servicos';
 
-var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
-var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
-var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
-var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("servicos-cadastrados");
 
@@ -51,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tbody = document.createElement("tbody");
 
         // Busca os serviços do db.json
-        fetch(urlServicos)
+        fetch("https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos")
             .then(response => response.json())
             .then(servicos => {
                 servicos.forEach(servico => {
@@ -114,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const status = selectEditStatus.value === "Ativo"; // Converte para booleano
 
         // Atualiza o serviço no db.json
-        fetch(`${urlServicos}/${id}`, {
+        fetch(`"https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos"/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -140,12 +134,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const status = true;
 
         // Adiciona um novo serviço no db.json
-        fetch(urlServicos, {
+        fetch("https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome: nome, valor: preco, tempo: tempo, status: status })
+            body: JSON.stringify({ nome, valor: preco, tempo, status})
         })
             .then(response => response.json())
             .then(() => {
@@ -165,6 +159,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let selectedRow = null;
+
+
+var urlUsuarios = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/usuarios'; // Rota para usuarios
+var urlBarbeiros = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/barbeiros'; // Rota para 
+var urlServicos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/servicos'; // Rota para barbeiros
+var urlAgendamentos = 'https://projeto-eixo-1-completo-teste-vercel.vercel.app/api/agendamento'; // Rota para barbeiros
+
 
 
 // var urlUsuario = 'http://localhost:3000/usuarios'; // Rota para usuarios
