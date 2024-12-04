@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 carregarServicos();
                 const modal = bootstrap.Modal.getInstance(document.getElementById('edit-cadastroModalServico'));
                 modal.hide(); // Fecha o modal após salvar
+                alert('Serviço editado com sucesso!');
             })
             .catch(error => console.error('Erro ao editar serviço:', error));
     });
@@ -145,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 inputNome.value = "";
                 inputPreco.value = "";
                 inputTempo.value = "";
+                alert('Serviço cadastrado com sucesso!'); // Alerta de serviço cadastrado
             })
             .catch(error => console.error('Erro ao cadastrar serviço:', error));
     });
