@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Função para salvar as alterações do serviço (modal de edição)
-    document.querySelector('#cadastrar-servico-salvar#').addEventListener('click', function () {
+    document.querySelector('#edit-cadastroModalServico .btn-popup').addEventListener('click', function () {
         const id = hiddenEditId.value;
         const nome = inputEditNome.value;
         const preco = inputEditPreco.value;
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Função para salvar um novo serviço (modal de cadastro)
-    document.querySelector('#cadastroModalServico .btn-popup').addEventListener('click', function () {
+    document.querySelector('#cadastrar-servico-salvar').addEventListener('click', function () {
         const nome = inputNome.value;
         const preco = inputPreco.value;
         const tempo = inputTempo.value;
